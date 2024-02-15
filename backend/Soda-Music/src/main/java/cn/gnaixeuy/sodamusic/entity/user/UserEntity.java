@@ -2,13 +2,17 @@ package cn.gnaixeuy.sodamusic.entity.user;
 
 import cn.gnaixeuy.sodamusic.entity.BaseEntity;
 import cn.gnaixeuy.sodamusic.enums.Gender;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +31,7 @@ import java.util.List;
 @ToString
 @Table(name = "user")
 @RequiredArgsConstructor
-public class UserEntity extends BaseEntity {
+public class UserEntity extends BaseEntity implements UserDetails {
 
     @Column(unique = true)
     private String username;
@@ -55,5 +59,30 @@ public class UserEntity extends BaseEntity {
     private String createUser;
 
     private String updateUser;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream().map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getName())).toList();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !getLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return getEnabled();
+    }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <img src="https://img1.baidu.com/it/u=2537966709,2852517020&fm=253&fmt=auto&app=138&f=JPEG?w=648&h=489"/> <br/>
@@ -21,5 +22,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     @Override
     List<UserEntity> findAll();
-    
+
+    Optional<UserEntity> findByUsername(String username);
+
 }

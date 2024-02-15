@@ -24,6 +24,7 @@ public enum ExceptionType {
     BAD_REQUEST(400, "请求错误"),
     FORBIDDEN(403, "无权操作"),
     NOT_FOUND(404, "未找到"),
+    PHONE_EMPTY(30001001, "手机号不能为空"),
     USER_NAME_DUPLICATE(40001001, "用户名重复"),
     USER_NOT_FOUND(40401002, "用户不存在"),
     USER_PASSWORD_NOT_MATCH(40001003, "用户名或密码错误"),

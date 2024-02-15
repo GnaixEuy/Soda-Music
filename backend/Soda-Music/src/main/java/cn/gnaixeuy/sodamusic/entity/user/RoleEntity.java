@@ -1,9 +1,10 @@
 package cn.gnaixeuy.sodamusic.entity.user;
 
 import cn.gnaixeuy.sodamusic.entity.BaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 /**
  * <img src="https://img1.baidu.com/it/u=2537966709,2852517020&fm=253&fmt=auto&app=138&f=JPEG?w=648&h=489"/> <br/>
