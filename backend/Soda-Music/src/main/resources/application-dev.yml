@@ -5,6 +5,22 @@ spring:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
     url: jdbc:${DATABASE_TYPE}://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+
+
+
   flyway:
-    enabled: false
+    enabled: true
     encoding: UTF-8
+    locations: classpath:db/migration
+    sqlMigrationPrefix: V
+    sqlMigrationSeparator: __
+    sqlMigrationSuffixes: .sql
+    validateOnMigrate: true
+    baselineOnMigrate: true
+    placeholderReplacement: false
+  docker:
+    compose:
+      enabled: false
+  jpa:
+    show-sql: true
+    open-in-view: false

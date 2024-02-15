@@ -10,6 +10,8 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  jpa:
+    generate-ddl: false
 server:
   port: ${SERVER_PORT}
 tencent:
