@@ -1,1 +1,22 @@
-
+spring:
+  application:
+    name: soda-music
+  profiles:
+    active: dev
+  mvc:
+    path match:
+      matching-strategy: ANT_PATH_MATCHER
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+server:
+  port: ${SERVER_PORT}
+tencent:
+  cos:
+    app-id: ${COS_ID}
+    bucket-name: ${COS_BUCKET}
+    region-id: ${COS_REGION}
+    secret-id: ${COS_SECRET_ID}
+    secret-key: ${COS_SECRET_KEY}
+    base-url: ${COS_BASE_URL}
