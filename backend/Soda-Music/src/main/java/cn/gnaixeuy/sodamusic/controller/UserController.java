@@ -2,6 +2,8 @@ package cn.gnaixeuy.sodamusic.controller;
 
 import cn.gnaixeuy.sodamusic.dto.ResponseResult;
 import cn.gnaixeuy.sodamusic.entity.user.UserEntity;
+import cn.gnaixeuy.sodamusic.enums.ExceptionType;
+import cn.gnaixeuy.sodamusic.exception.BizException;
 import cn.gnaixeuy.sodamusic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = {"/list"})
-    public ResponseResult<List<UserEntity>> getAll() {
-        return ResponseResult.success(this.userService.testUserList());
+    public ResponseResult<List<UserEntity>> getAllList() {
+        throw new BizException(ExceptionType.BAD_REQUEST);
     }
 
     @Autowired
