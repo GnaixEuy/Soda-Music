@@ -16,7 +16,12 @@
 
 
 
-> 架构设计
+> 后端技术选型
 >
-> 前期单体 -> 后期分布式
+> 前期单体 boot ->  cloud-> 后期分布式Goland
+>
+> * Spring boot 3
+> * mysql redis mongodb
+> * spring cache spring security 
+> * spring data jpa
 
