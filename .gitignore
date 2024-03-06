@@ -33,3 +33,5 @@ build/
 .vscode/
 
 .env.dev
+
+.DS_Store
