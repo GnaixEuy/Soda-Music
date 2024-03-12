@@ -1,4 +1,4 @@
-package cn.gnaixeuy.sodamusic.dto.music;
+package cn.gnaixeuy.sodamusic.dto;
 
 import lombok.Data;
 
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  * @see <a href="https://github.com/GnaixEuy">GnaixEuy</a>
  */
 @Data
-public class BaseDto implements Serializable {
+public abstract class BaseDto implements Serializable {
     private String id;
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;

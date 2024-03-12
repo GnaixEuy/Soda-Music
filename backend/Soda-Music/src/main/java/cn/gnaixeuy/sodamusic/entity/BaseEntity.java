@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -25,7 +26,7 @@ import java.time.LocalDateTime;
 @ToString
 @RequiredArgsConstructor
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity implements Serializable {
 
     @Id
     private String id;

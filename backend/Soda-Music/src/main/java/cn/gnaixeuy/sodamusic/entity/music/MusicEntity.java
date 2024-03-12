@@ -1,6 +1,6 @@
 package cn.gnaixeuy.sodamusic.entity.music;
 
-import cn.gnaixeuy.sodamusic.entity.BaseEntity;
+import cn.gnaixeuy.sodamusic.entity.TraceableBaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,12 +16,7 @@ import java.time.Instant;
         @AttributeOverride(name = "createdTime", column = @Column(name = "created_time")),
         @AttributeOverride(name = "updatedTime", column = @Column(name = "updated_time"))
 })
-public class MusicEntity extends BaseEntity {
-    @Column(name = "created_user", length = 64)
-    private String createdUser;
-
-    @Column(name = "updated_user", length = 64)
-    private String updatedUser;
+public class MusicEntity extends TraceableBaseEntity {
 
     @Column(name = "file_id", length = 64)
     private String fileId;

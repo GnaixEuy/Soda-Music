@@ -1,5 +1,6 @@
 package cn.gnaixeuy.sodamusic.dto.music;
 
+import cn.gnaixeuy.sodamusic.dto.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
