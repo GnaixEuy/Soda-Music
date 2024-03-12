@@ -11,7 +11,7 @@ package cn.gnaixeuy.sodamusic.enums;
 /**
  * <img src="http://blog.GnaixEuy.cn/wp-content/uploads/2021/08/bug.jpeg"/>
  * <p>
- * 项目： CatHat-Music
+ * 项目： CatHat-MusicEntity
  *
  * @author GnaixEuy
  * @date 2022/5/6

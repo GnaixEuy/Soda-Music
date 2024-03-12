@@ -1,6 +1,6 @@
 package cn.gnaixeuy.sodamusic.repository;
 
-import cn.gnaixeuy.sodamusic.entity.user.UserEntity;
+import cn.gnaixeuy.sodamusic.entity.music.MusicEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,16 +13,14 @@ import java.util.Optional;
  *
  * @author GnaixEuy
  * @version 1.0
- * @date 2024/2/15
+ * @date 2024/3/11
  * @see <a href="https://github.com/GnaixEuy">GnaixEuy</a>
  */
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, String> {
-
-
+public interface MusicRepository extends JpaRepository<MusicEntity, String> {
     @Override
-    List<UserEntity> findAll();
+    Optional<MusicEntity> findById(String s);
 
-    Optional<UserEntity> findByUsername(String username);
+    List<MusicEntity> findByIdIn(List<String> ids);
 
 }

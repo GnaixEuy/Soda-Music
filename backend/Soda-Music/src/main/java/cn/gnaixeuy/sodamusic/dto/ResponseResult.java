@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * <img src="https://img1.baidu.com/it/u=2537966709,2852517020&fm=253&fmt=auto&app=138&f=JPEG?w=648&h=489"/> <br/>
- * Soda-Music
+ * Soda-MusicEntity
  *
  * @author GnaixEuy
  * @version 1.0
@@ -28,11 +28,11 @@ public class ResponseResult<T> implements Serializable {
     private T data;
 
     public static <T> ResponseResult<T> success(T data) {
-        return new ResponseResult<>(HttpStatus.OK.value(),HttpStatus.OK.getReasonPhrase(), data);
+        return new ResponseResult<>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data);
     }
 
     public static <T> ResponseResult<T> error(String message) {
-        return new ResponseResult<>(HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), null);
+        return new ResponseResult<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), null);
     }
 
     public static ResponseResult createInstance() {
