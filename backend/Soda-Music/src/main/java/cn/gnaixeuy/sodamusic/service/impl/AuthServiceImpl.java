@@ -1,10 +1,14 @@
 package cn.gnaixeuy.sodamusic.service.impl;
 
+import cn.gnaixeuy.sodamusic.dto.event.SendMessageTask;
 import cn.gnaixeuy.sodamusic.entity.user.UserEntity;
 import cn.gnaixeuy.sodamusic.enums.ExceptionType;
+import cn.gnaixeuy.sodamusic.enums.RabbitMQConstant;
 import cn.gnaixeuy.sodamusic.exception.BizException;
 import cn.gnaixeuy.sodamusic.repository.UserRepository;
 import cn.gnaixeuy.sodamusic.service.AuthService;
+import cn.gnaixeuy.sodamusic.utils.DirectSender;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,7 @@ import java.util.Optional;
 public class AuthServiceImpl implements AuthService {
 
     private UserRepository userRepository;
+    private DirectSender directSender;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -45,11 +50,6 @@ public class AuthServiceImpl implements AuthService {
         return userEntity;
     }
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @Override
     public String getPhoneValidateCode(String phone) {
         //todo 这里后面封request 请求 去校验ip
@@ -57,13 +57,24 @@ public class AuthServiceImpl implements AuthService {
         if (StrUtil.isBlank(phone)) {
             throw new BizException(ExceptionType.PHONE_EMPTY);
         }
+        String captcha = RandomUtil.randomNumbers(6);
         // 发送验证码
-        
-//       log.info();
-
-
-        //存入redis
+        SendMessageTask sendMessageTask = new SendMessageTask()
+                .setPhoneNumber(phone)
+                .setCaptcha(captcha);
+        directSender.send(RabbitMQConstant.SEND_MESSAGE, sendMessageTask);
 
         return null;
     }
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setDirectSender(DirectSender directSender) {
+        this.directSender = directSender;
+    }
+
 }
