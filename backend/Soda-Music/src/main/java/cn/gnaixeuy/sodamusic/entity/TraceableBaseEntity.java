@@ -4,7 +4,8 @@ import cn.gnaixeuy.sodamusic.entity.user.UserEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,6 @@ import javax.persistence.MappedSuperclass;
  */
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @MappedSuperclass
 public abstract class TraceableBaseEntity extends BaseEntity {
@@ -34,5 +34,10 @@ public abstract class TraceableBaseEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "updated_user")
     private UserEntity updateUser;
+
+    @CreatedBy
+    private String createdUser;
+    @LastModifiedBy
+    private String updatedUser;
 
 }

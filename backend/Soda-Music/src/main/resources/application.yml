@@ -12,6 +12,20 @@ spring:
       max-request-size: 10MB
   jpa:
     generate-ddl: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    publisher-returns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+        retry:
+          enabled: true
+          max-attempts: 5
+          max-interval: 3000
 server:
   port: ${SERVER_PORT}
 tencent:

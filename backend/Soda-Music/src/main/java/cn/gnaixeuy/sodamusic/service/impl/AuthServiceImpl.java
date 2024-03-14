@@ -58,6 +58,9 @@ public class AuthServiceImpl implements AuthService {
             throw new BizException(ExceptionType.PHONE_EMPTY);
         }
         // 发送验证码
+        
+//       log.info();
+
 
         //存入redis
 
