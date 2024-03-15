@@ -24,8 +24,9 @@ public class AuthController {
     private AuthService authService;
 
     @GetMapping(value = "/sms-code/{phone}")
-    public ResponseResult<String> getPhoneValidateCode(@PathVariable String phone) {
-        return ResponseResult.success(this.authService.getPhoneValidateCode(phone));
+    public ResponseResult<Object> getPhoneValidateCode(@PathVariable String phone) {
+        this.authService.getPhoneValidateCode(phone);
+        return ResponseResult.success();
     }
 
     @Autowired

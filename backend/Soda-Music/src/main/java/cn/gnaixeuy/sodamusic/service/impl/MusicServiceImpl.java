@@ -3,6 +3,7 @@ package cn.gnaixeuy.sodamusic.service.impl;
 import cn.gnaixeuy.sodamusic.dto.music.MusicDto;
 import cn.gnaixeuy.sodamusic.dto.music.MusicSaveRequest;
 import cn.gnaixeuy.sodamusic.entity.music.MusicEntity;
+import cn.gnaixeuy.sodamusic.enums.CacheNameConstant;
 import cn.gnaixeuy.sodamusic.enums.ExceptionType;
 import cn.gnaixeuy.sodamusic.exception.BizException;
 import cn.gnaixeuy.sodamusic.mapper.music.MusicMapper;
@@ -11,6 +12,8 @@ import cn.gnaixeuy.sodamusic.service.MusicService;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +34,7 @@ public class MusicServiceImpl implements MusicService {
     private MusicMapper musicMapper;
 
     @Override
+    @Cacheable(cacheNames = {CacheNameConstant.MUSIC,}, key = "#id")
     public MusicDto getById(String id) {
         Optional<MusicEntity> musicOptional = this.musicRepository.findById(id);
         if (musicOptional.isEmpty()) {
@@ -45,10 +49,16 @@ public class MusicServiceImpl implements MusicService {
     }
 
     @Override
+    @CacheEvict(cacheNames = {CacheNameConstant.MUSIC,}, key = "#musicSaveRequest.id", condition = "!musicSaveRequest.id.empty")
     public MusicDto saveOrUpdate(MusicSaveRequest musicSaveRequest) {
         MusicEntity musicEntity;
-        if (StrUtil.isNotBlank(musicSaveRequest.getId())) {
-            MusicDto musicDto = this.getById(musicSaveRequest.getId());
+        String musicSaveRequestId = musicSaveRequest.getId();
+        if (StrUtil.isNotBlank(musicSaveRequestId)) {
+            Optional<MusicEntity> musicOptional = this.musicRepository.findById(musicSaveRequestId);
+            if (musicOptional.isEmpty()) {
+                throw new BizException(ExceptionType.MUSIC_NOT_FOUND);
+            }
+            MusicDto musicDto = this.musicMapper.toDto(musicOptional.get());
             musicEntity = this.musicRepository.save(
                     this.musicMapper.partialUpdate(musicDto, new MusicEntity()));
         } else {

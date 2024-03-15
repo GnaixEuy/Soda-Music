@@ -27,8 +27,12 @@ public class ResponseResult<T> implements Serializable {
 
     private T data;
 
-    public static <T> ResponseResult<T> success(T data) {
+    public static <T> ResponseResult<T> ok(T data) {
         return new ResponseResult<>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), data);
+    }
+
+    public static <T> ResponseResult<T> success() {
+        return new ResponseResult<>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), null);
     }
 
     public static <T> ResponseResult<T> error(String message) {

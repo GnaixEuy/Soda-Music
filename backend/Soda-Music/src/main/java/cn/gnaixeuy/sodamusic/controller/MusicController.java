@@ -27,17 +27,17 @@ public class MusicController {
 
     @GetMapping(value = {"/{id}"})
     public ResponseResult<MusicDto> getById(@PathVariable String id) {
-        return ResponseResult.success(this.musicService.getById(id));
+        return ResponseResult.ok(this.musicService.getById(id));
     }
 
     @GetMapping(value = {"/list"})
     public ResponseResult<List<MusicDto>> getList() {
-        return ResponseResult.success(this.musicService.getList());
+        return ResponseResult.ok(this.musicService.getList());
     }
 
     @PostMapping(value = {"/"})
     public ResponseResult<MusicDto> save(@RequestBody @Validated MusicSaveRequest musicSaveRequest) {
-        return ResponseResult.success(this.musicService.saveOrUpdate(musicSaveRequest));
+        return ResponseResult.ok(this.musicService.saveOrUpdate(musicSaveRequest));
     }
 
     @DeleteMapping(value = {"/{id}"})

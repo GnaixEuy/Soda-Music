@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping(value = {"/list"})
     public ResponseResult<List<UserEntity>> getAllList() {
-        return ResponseResult.success(this.userService.getAllList());
+        return ResponseResult.ok(this.userService.getAllList());
     }
 
     @Autowired

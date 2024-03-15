@@ -12,5 +12,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @see <a href="https://github.com/GnaixEuy">GnaixEuy</a>
  */
 public interface AuthService extends UserDetailsService {
-    String getPhoneValidateCode(String phone);
+    void getPhoneValidateCode(String phone);
 }

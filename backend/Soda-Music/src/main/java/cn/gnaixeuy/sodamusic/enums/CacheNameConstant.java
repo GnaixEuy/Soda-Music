@@ -6,19 +6,11 @@ package cn.gnaixeuy.sodamusic.enums;
  *
  * @author GnaixEuy
  * @version 1.0
- * @date 2024/3/14
+ * @date 2024/3/15
  * @see <a href="https://github.com/GnaixEuy">GnaixEuy</a>
  */
-public interface RabbitMQConstant {
+public interface CacheNameConstant {
 
-    /**
-     * 交换机名称
-     */
-    String DIRECT_EXCHANGE = "directExchange";
-
-    /**
-     * 发送信息 队列名称 routing-key
-     */
-    String SEND_MESSAGE = "send-message";
+    String MUSIC = "music";
 
 }
