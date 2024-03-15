@@ -34,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     private DirectSender directSender;
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserEntity> userEntityOptional = this.userRepository.findByUsername(username);

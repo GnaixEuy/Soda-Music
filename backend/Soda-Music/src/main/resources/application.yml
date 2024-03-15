@@ -26,6 +26,12 @@ spring:
           enabled: true
           max-attempts: 5
           max-interval: 3000
+  redis:
+    database: 0
+    username: ${REDIS_USERNAME}
+    password: ${REDIS_PASSWORD}
+    port: ${REDIS_PORT}
+    host: ${REDIS_HOST}
 server:
   port: ${SERVER_PORT}
 tencent:
