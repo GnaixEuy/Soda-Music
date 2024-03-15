@@ -6,8 +6,6 @@ spring:
     password: ${DATABASE_PASSWORD}
     url: jdbc:${DATABASE_TYPE}://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
 
-
-
   flyway:
     enabled: true
     encoding: UTF-8

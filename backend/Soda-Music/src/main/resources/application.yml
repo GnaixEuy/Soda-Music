@@ -35,6 +35,12 @@ spring:
 server:
   port: ${SERVER_PORT}
 tencent:
+  message:
+    secret-id: ${MESSAGE_TENCENT_SECRET_ID}
+    secret-key: ${MESSAGE_TENCENT_SECRET_KEY}
+    template-id: ${MESSAGE_TENCENT_TEMPLATE_ID}
+    sms-sdk-app-id: ${MESSAGE_TENCENT_SDK_APP_ID}
+    sign-name: ${MESSAGE_TENCENT_SIGN_NAME}
   cos:
     app-id: ${COS_ID}
     bucket-name: ${COS_BUCKET}
